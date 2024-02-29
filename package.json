@@ -1,0 +1,12 @@
+{
+    "name": "server-rolling-coffe",
+    "version": "1.0.0",
+    "description": "Servidor del proyecto de rolling coffee",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Joaquin Medina",
+    "license": "ISC"
+}
