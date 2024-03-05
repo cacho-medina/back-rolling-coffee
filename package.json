@@ -4,9 +4,14 @@
     "description": "Servidor del proyecto de rolling coffee",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node index.js",
+        "dev": "node --watch index.js",
+        "diablo": "nodemon --exec node index.js"
     },
     "keywords": [],
     "author": "Joaquin Medina",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.18.3"
+    }
 }
