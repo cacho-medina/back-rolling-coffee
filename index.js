@@ -4,6 +4,7 @@ import morgan from "morgan";
 import "dotenv/config"; //permite procesar variables de entorno
 import path from "path";
 import { fileURLToPath } from "url";
+import productosRouter from "./src/routes/productos.routes.js";
 
 const app = express();
 
@@ -22,3 +23,7 @@ app.use(express.urlencoded({ extended: true })); //permite interpretar los datos
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "/public")));
+
+
+//RUTAS
+app.use("/api", productosRouter);
