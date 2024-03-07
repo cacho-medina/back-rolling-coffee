@@ -5,6 +5,7 @@ import "dotenv/config"; //permite procesar variables de entorno
 import path from "path";
 import { fileURLToPath } from "url";
 import productosRouter from "./src/routes/productos.routes.js";
+import "./src/database/database.js";
 
 const app = express();
 
@@ -24,6 +25,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "/public")));
 
-
 //RUTAS
 app.use("/api", productosRouter);
+
+//DATABASE
