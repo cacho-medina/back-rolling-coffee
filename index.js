@@ -1,7 +1,9 @@
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const config = require("dotenv/config"); //permite procesar variables de entorno
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import "dotenv/config"; //permite procesar variables de entorno
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 
@@ -12,14 +14,11 @@ app.listen(app.get("port"), () => {
     console.log(`servidor corriendo en puerto ${app.get("port")}`);
 });
 
+//MIDDLEWARES
 app.use(cors()); //permite aceptar conexiones remotas
 app.use(morgan("dev")); //muestra informacion de las solicitudes
 app.use(express.json()); //permite interpretar el formato json
 app.use(express.urlencoded({ extended: true })); //permite interpretar los datos del body de una solicitud
-
-app.get("/", (req, res) => {
-    res.send("hola");
-});
-app.get("*", (req, res) => {
-    res.status(400).end("<h1>Error</h1>");
-});
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, "/public")));
