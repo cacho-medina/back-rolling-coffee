@@ -20,7 +20,7 @@ const productoSchema = new Schema({
         validate: {
             validator: function (value) {
                 return /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/i.test(
-                    valor
+                    value
                 );
             },
             message: (props) => `${props.value} no es una url valida`,
