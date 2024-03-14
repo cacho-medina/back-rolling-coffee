@@ -5,8 +5,18 @@ export const listarProd = async (req, res) => {
         const listaProductos = await Producto.find();
         res.status(200).json(listaProductos);
     } catch (error) {
-        console.log(error);
-        res.status(400).json({ message: "No se pudo obtener los productos" });
+        console.error(error);
+        res.status(404).json({ message: "No se pudo obtener los productos" });
+    }
+};
+export const getProdById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const producto = await Producto.findById(id)
+        res.status(200).json(producto);
+    } catch (error) {
+        console.error(error);
+        res.status(404).json({ message: "El producto no fue encontrado" });
     }
 };
 
@@ -17,7 +27,7 @@ export const crearProd = async (req, res) => {
         const created = await productoNuevo.save();
         res.status(201).json(created);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(400).json({ message: "El producto no pudo ser creado" });
     }
 };
