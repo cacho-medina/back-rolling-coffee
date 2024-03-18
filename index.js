@@ -27,5 +27,3 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 //RUTAS
 app.use("/api", productosRouter);
-
-//DATABASE
