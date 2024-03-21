@@ -23,10 +23,7 @@ export const getProdById = async (req, res) => {
 
 export const crearProd = async (req, res) => {
     try {
-        const err = validationResult(req);
-        if (!err.isEmpty()) {
-            return res.status(400).json({ errores: err.array() });
-        }
+        
 
         const productoNuevo = new Producto(req.body);
         const created = await productoNuevo.save();
