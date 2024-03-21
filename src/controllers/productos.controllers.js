@@ -1,3 +1,4 @@
+import { validationResult } from "express-validator";
 import Producto from "../database/models/producto.js";
 
 export const listarProd = async (req, res) => {
@@ -22,8 +23,12 @@ export const getProdById = async (req, res) => {
 
 export const crearProd = async (req, res) => {
     try {
-        const producto = req.body;
-        const productoNuevo = new Producto(producto);
+        const err = validationResult(req);
+        if (!err.isEmpty()) {
+            return res.status(400).json({ errores: err.array() });
+        }
+
+        const productoNuevo = new Producto(req.body);
         const created = await productoNuevo.save();
         res.status(201).json(created);
     } catch (error) {
@@ -61,5 +66,3 @@ export const deleteProd = async (req, res) => {
         res.status(500).json({ message: "Error al eliminar el producto" });
     }
 };
-
-
